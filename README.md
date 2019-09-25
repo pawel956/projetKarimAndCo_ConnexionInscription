@@ -1,4 +1,4 @@
-# ProjetKarimAndCo - composant : connexion et inscription
+# KarimAndCo - composant : connexion et inscription
 Document utilisateur : [cliquez-ici](https://docs.google.com/document/d/1nW1IItZ4RfnRoahEaQirap2QfmtTX6tPgkBLDmhopvI/edit?usp=sharing)
 
 Le panneau qui contient le formulaire de connexion :  PanneauFormConnexion
