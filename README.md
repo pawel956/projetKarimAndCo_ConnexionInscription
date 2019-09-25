@@ -8,7 +8,9 @@ Pour se connecter à la base de données avec la classe BDD :
 ```java
 // Initiliser la propriété dans la classe
 private BDD connexionBDD = new BDD();
+
 ...
+
 // Appel de la méthode connexionBDD
 connexionBDD.ConnexionBDD();
 ```
