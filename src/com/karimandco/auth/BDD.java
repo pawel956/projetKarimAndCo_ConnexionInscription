@@ -32,11 +32,11 @@ public class BDD {
      * informations de connexion à la base de données.
      */
     public BDD() {
-        this.AdresseBDD = "";
+        this.AdresseBDD = "www.cnadal.fr";
         this.PortBDD = "3306";
-        this.NomBDD = "";
-        this.UtilisateurBDD = "";
-        this.MdpBDD = "";
+        this.NomBDD = "sio2_cv";
+        this.UtilisateurBDD = "sio2_cv";
+        this.MdpBDD = "formation2020";
     }
 
     /**
