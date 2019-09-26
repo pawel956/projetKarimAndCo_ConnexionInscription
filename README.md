@@ -32,3 +32,7 @@ private BDD connexionBDD = new BDD();
 // Appel de la méthode connexionBDD
 connexionBDD.ConnexionBDD();
 ```
+
+##### Dépendances utilisés : 
++ commons-net-3.6
++ mysql-connector-java-5.1.48
