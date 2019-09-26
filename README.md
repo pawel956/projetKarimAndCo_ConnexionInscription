@@ -22,8 +22,10 @@ Document utilisateur : [cliquez-ici](https://docs.google.com/document/d/1nW1IItZ
 
 #### Informations divers
 
-Le panneau qui contient le formulaire de connexion :  PanneauFormConnexion 
-Le panneau qui contient le formulaire d'inscription :  PanneauFormInscription
+<p>
+	Le panneau qui contient le formulaire de connexion :  PanneauFormConnexion 
+	Le panneau qui contient le formulaire d'inscription :  PanneauFormInscription
+</p>
 
 Pour se connecter à la base de données avec la classe BDD :
 ```java
