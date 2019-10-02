@@ -47,11 +47,11 @@ public class BDD {
             try {
                 String ChaineConnexion = "jdbc:mysql://" + this.AdresseBDD + ":" + this.PortBDD + "/" + this.NomBDD;
                 this.connexion = (Connection) DriverManager.getConnection(ChaineConnexion, this.UtilisateurBDD, this.MdpBDD);
-                if (this.connexion != null) {
-                    System.out.println("Connecté à la bdd");
-                } else {
-                    System.out.println("Non connecté à la bdd");
-                }
+//                if (this.connexion != null) {
+//                    System.out.println("Connecté à la bdd");
+//                } else {
+//                    System.out.println("Non connecté à la bdd");
+//                }
             } catch (SQLException ex) {
                 Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
             }

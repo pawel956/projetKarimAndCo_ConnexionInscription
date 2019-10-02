@@ -32,6 +32,8 @@ public class PanneauFormInscription extends javax.swing.JPanel {
     public PanneauFormInscription() {
         initComponents();
 
+        connexionBDD.ConnexionBDD();
+
         panneauNom.setjLabelNomChamp("Nom");
         panneauPrenom.setjLabelNomChamp("Prénom");
         panneauIdentifiant.setjLabelNomChamp("Identifiant");
@@ -178,7 +180,6 @@ public class PanneauFormInscription extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (nomOK && prenomOK && identifiantOK && courrielOK && numeroTelephoneOK && dateNaissanceOK && mdpOK) {
-            connexionBDD.ConnexionBDD();
             String[] date_split = this.panneauDateNaissance.getChamp2().getText().split("/");
             String date_newFormat = date_split[2] + "-" + date_split[1] + "-" + date_split[0];
             Boolean resultat = connexionBDD.InsertFormInscription(this.panneauNom.getChamp2().getText(), this.panneauPrenom.getChamp2().getText(), this.panneauIdentifiant.getChamp2().getText(), this.panneauCourriel.getChamp2().getText(), this.panneauNumeroTelephone.getChamp2().getText(), date_newFormat, String.valueOf(this.panneauMdp.getChampSecret1().getPassword()));

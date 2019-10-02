@@ -35,6 +35,8 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
     public PanneauFormConnexion() {
         initComponents();
 
+        connexionBDD.ConnexionBDD();
+
         panneauIdentifiant.setjLabelNomChamp("Identifiant");
         panneauMdp.setjLabelNomChampSecret("Mot de passe");
 
@@ -167,10 +169,7 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
 
     private void jButtonConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConnexionActionPerformed
         if (identifiantOK && mdpOK) {
-            connexionBDD.ConnexionBDD();
-
-            Boolean resultat = connexionBDD.SelectFormConnexion(this.panneauIdentifiant.getChamp2().getText(), String.valueOf(this.panneauMdp.getChampSecret1().getPassword()));
-            if (resultat == true) {
+            if (connexionBDD.SelectFormConnexion(this.panneauIdentifiant.getChamp2().getText(), String.valueOf(this.panneauMdp.getChampSecret1().getPassword()))) {
                 jLabelEtatConnexion.setForeground(Color.blue);
                 jLabelEtatConnexion.setText("Connexion réussie");
             } else {
