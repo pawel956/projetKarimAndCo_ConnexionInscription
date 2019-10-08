@@ -8,6 +8,7 @@ package com.karimandco.auth;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.net.InetAddress;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,8 +24,6 @@ import org.apache.commons.net.ntp.TimeInfo;
  * @author Damien F, Pawel R, Théo M
  */
 public class Champ extends JTextField implements KeyListener {
-
-    BDD connexionBDD = new BDD();
 
     public Champ() {
         super();
@@ -204,11 +203,16 @@ public class Champ extends JTextField implements KeyListener {
                             dateNaissanceOK = false;
                         }
                     } catch (Exception e) {
-                        connexionBDD.ConnexionBDD();
-                        String[] date_bdd = connexionBDD.SelectTimeServer().split("-");
-                        GregorianCalendar date_bdd_gregorian = new GregorianCalendar(Integer.parseInt(date_bdd[0]), (Integer.parseInt(date_bdd[1]) - 1), Integer.parseInt(date_bdd[2]));
-                        if (date_bdd_gregorian.compareTo(calendrier) < 0) {
-                            dateNaissanceOK = false;
+                        ResultSet lesResultats = DaoSIO.getInstance().requeteSelection("SELECT CURRENT_DATE");
+                        try {
+                            if (lesResultats.next()) {
+                                String[] date_bdd = lesResultats.getString("CURRENT_DATE").split("-");
+                                GregorianCalendar date_bdd_gregorian = new GregorianCalendar(Integer.parseInt(date_bdd[0]), (Integer.parseInt(date_bdd[1]) - 1), Integer.parseInt(date_bdd[2]));
+                                if (date_bdd_gregorian.compareTo(calendrier) < 0) {
+                                    dateNaissanceOK = false;
+                                }
+                            }
+                        } catch (Exception e_bis) {
                         }
                     }
                 }

@@ -23,16 +23,12 @@ public class PanneauFormInscription extends javax.swing.JPanel {
     private Boolean dateNaissanceOK = false;
     private Boolean mdpOK = false;
 
-    private BDD connexionBDD = new BDD();
-
     /**
      * Ce constructeur permet d'initialiser le nom des labels et de générer les
      * KeyListener pour capturer les actions.
      */
     public PanneauFormInscription() {
         initComponents();
-
-        connexionBDD.ConnexionBDD();
 
         panneauNom.setjLabelNomChamp("Nom");
         panneauPrenom.setjLabelNomChamp("Prénom");
@@ -182,8 +178,8 @@ public class PanneauFormInscription extends javax.swing.JPanel {
         if (nomOK && prenomOK && identifiantOK && courrielOK && numeroTelephoneOK && dateNaissanceOK && mdpOK) {
             String[] date_split = this.panneauDateNaissance.getChamp2().getText().split("/");
             String date_newFormat = date_split[2] + "-" + date_split[1] + "-" + date_split[0];
-            Boolean resultat = connexionBDD.InsertFormInscription(this.panneauNom.getChamp2().getText(), this.panneauPrenom.getChamp2().getText(), this.panneauIdentifiant.getChamp2().getText(), this.panneauCourriel.getChamp2().getText(), this.panneauNumeroTelephone.getChamp2().getText(), date_newFormat, String.valueOf(this.panneauMdp.getChampSecret1().getPassword()));
-            if (resultat == true) {
+
+            if (DaoSIO.getInstance().requeteAction("INSERT INTO utilisateurs (nom, prenom, identifiant, courriel, num_telephone, date_de_naissance, mot_de_passe, photo) VALUES ('" + this.panneauNom.getChamp2().getText() + "', '" + this.panneauPrenom.getChamp2().getText() + "', '" + this.panneauIdentifiant.getChamp2().getText() + "', '" + this.panneauCourriel.getChamp2().getText() + "', '" + this.panneauNumeroTelephone.getChamp2().getText() + "', '" + date_newFormat + "', '" + String.valueOf(this.panneauMdp.getChampSecret1().getPassword()) + "', '')") > 0) {
                 jLabelEtatInscription.setForeground(Color.blue);
                 jLabelEtatInscription.setText("Inscription réussi");
             } else {

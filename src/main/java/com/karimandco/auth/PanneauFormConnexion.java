@@ -8,6 +8,7 @@ package com.karimandco.auth;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.ResultSet;
 
 /**
  *
@@ -17,8 +18,6 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
 
     private Boolean identifiantOK = false;
     private Boolean mdpOK = false;
-
-    private BDD connexionBDD = new BDD();
 
     public void setIdentifiantOK(Boolean identifiantOK) {
         this.identifiantOK = identifiantOK;
@@ -34,8 +33,6 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
      */
     public PanneauFormConnexion() {
         initComponents();
-
-        connexionBDD.ConnexionBDD();
 
         panneauIdentifiant.setjLabelNomChamp("Identifiant");
         panneauMdp.setjLabelNomChampSecret("Mot de passe");
@@ -169,16 +166,17 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
 
     private void jButtonConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConnexionActionPerformed
         if (identifiantOK && mdpOK) {
-            if (connexionBDD.SelectFormConnexion(this.panneauIdentifiant.getChamp2().getText(), String.valueOf(this.panneauMdp.getChampSecret1().getPassword()))) {
-                jLabelEtatConnexion.setForeground(Color.blue);
-                jLabelEtatConnexion.setText("Connexion réussie");
-            } else {
-                jLabelEtatConnexion.setForeground(Color.red);
-                jLabelEtatConnexion.setText("Identifiant et/ou mot de passe incorrect(s)");
+            ResultSet lesResultats = DaoSIO.getInstance().requeteSelection("SELECT * FROM utilisateurs WHERE identifiant='" + this.panneauIdentifiant.getChamp2().getText() + "' AND mot_de_passe='" + String.valueOf(this.panneauMdp.getChampSecret1().getPassword()) + "'");
+            try {
+                if (lesResultats.next()) {
+                    jLabelEtatConnexion.setForeground(Color.blue);
+                    jLabelEtatConnexion.setText("Connexion réussie");
+                } else {
+                    jLabelEtatConnexion.setForeground(Color.red);
+                    jLabelEtatConnexion.setText("Identifiant et/ou mot de passe incorrect(s)");
+                }
+            } catch (Exception e) {
             }
-        } else {
-            jLabelEtatConnexion.setForeground(Color.black);
-            jLabelEtatConnexion.setText("");
         }
     }//GEN-LAST:event_jButtonConnexionActionPerformed
 
