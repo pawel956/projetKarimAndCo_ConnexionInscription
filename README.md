@@ -6,9 +6,10 @@
 <img src="http://hits.dwyl.io/pawel956/pawel956/projetKarimAndCo_ConnexionInscription.svg">
 <img src="https://img.shields.io/github/contributors/pawel956/projetKarimAndCo_ConnexionInscription">
 <img src="https://img.shields.io/github/repo-size/pawel956/projetKarimAndCo_ConnexionInscription">
+<img src="https://img.shields.io/badge/project-maven-yellow">
 </p>
 
-### ProjetKarimAndCo - composant 1 : connexion et inscription
+### ProjetKarimAndCo - composant 1 : connexion et inscription (Projet Maven)
 ---
 
 #### Introduction
