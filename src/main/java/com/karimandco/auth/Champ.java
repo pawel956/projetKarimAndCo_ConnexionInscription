@@ -169,13 +169,13 @@ public class Champ extends JTextField implements KeyListener {
                 String date_gregorian_jour;
                 String date_gregorian_mois;
 
-                if ((calendrier.get(Calendar.DATE) + 1) < 10) {
+                if ((calendrier.get(Calendar.DATE) + 1) < 10 && dateNaissance_split[0].length() == 2) {
                     date_gregorian_jour = "0" + calendrier.get(Calendar.DATE);
                 } else {
                     date_gregorian_jour = String.valueOf(calendrier.get(Calendar.DATE));
                 }
 
-                if ((calendrier.get(Calendar.MONTH) + 1) < 10) {
+                if ((calendrier.get(Calendar.MONTH) + 1) < 10 && dateNaissance_split[1].length() == 2) {
                     date_gregorian_mois = "0" + (calendrier.get(Calendar.MONTH) + 1);
                 } else {
                     date_gregorian_mois = String.valueOf(calendrier.get(Calendar.MONTH) + 1);
