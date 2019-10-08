@@ -9,7 +9,7 @@
 <img src="https://img.shields.io/badge/project-maven-yellow">
 </p>
 
-### ProjetKarimAndCo - composant 1 : connexion et inscription (Projet Maven)
+### ProjetKarimAndCo - composant 1 : connexion et inscription
 ---
 
 #### Introduction
