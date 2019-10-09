@@ -27,9 +27,18 @@ Javadoc : [cliquez-ici](https://pawel956.github.io/projetKarimAndCo_ConnexionIns
 Document utilisateur : [cliquez-ici](https://docs.google.com/document/d/1nW1IItZ4RfnRoahEaQirap2QfmtTX6tPgkBLDmhopvI/edit?usp=sharing)
 
 #### Dépendances utilisés
-<img src="https://img.shields.io/badge/commons--net-3.6-success">  
-<img src="https://img.shields.io/badge/mysql--connector--java-5.1.48-success">
+<a href="http://mirrors.ircam.fr/pub/apache//commons/net/binaries/commons-net-3.6-bin.zip"><img src="https://img.shields.io/badge/commons--net-3.6-success"></a>  
 
-#### Informations divers
-Le panneau qui contient le formulaire de connexion :  PanneauFormConnexion  
-Le panneau qui contient le formulaire d'inscription :  PanneauFormInscription
+<a href="https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.48/mysql-connector-java-5.1.48.jar"><img src="https://img.shields.io/badge/mysql--connector--java-5.1.48-success"></a>
+
+#### Pour intégrer ce composant à un projet sur Netbeans
+Clique droit sur la classe `PanneauFormConnexion` ou `PanneauFormInscription` → Tools → Add to Palette → choisir une catégorie de Palette → aller dans une classe de type `JFrame Form` ou `JPanel Form` → aller dans l'onglet `Design` → sur la droite, cliquer sur le composant et recliquer dans la fenêtre pour placer le composant
+
+⚠ Ne pas oublier d'intégrer les dépendances dans le projet
+
+#### Informations utiles pour la base de données
+Toutes les méthodes en lien avec la base de données sont regroupées dans la classe DaoSIO.  
+
+Pour exécuter une requête de type SELECT, on doit saisir : DaoSIO.getInstance().requeteSelection(`SQL`)  
+
+Pour exécuter une requête de type ACTION, on doit saisir : DaoSIO.getInstance().requeteAction(`SQL`)
