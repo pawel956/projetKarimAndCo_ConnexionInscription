@@ -33,3 +33,4 @@ Document utilisateur : [cliquez-ici](https://docs.google.com/document/d/1nW1IItZ
 #### Informations divers
 Le panneau qui contient le formulaire de connexion :  PanneauFormConnexion  
 Le panneau qui contient le formulaire d'inscription :  PanneauFormInscription
+La connexion a la base de donnée se fais avec la classe DaoSio
