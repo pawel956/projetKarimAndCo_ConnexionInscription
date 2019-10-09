@@ -38,7 +38,7 @@ Aller sur la page <a href="https://github.com/pawel956/projetKarimAndCo_Connexio
 
 + 2ère étape, pour intégrer le package au nouveau projet :
 
-Ouvrir le projet → clique droit sur le package `com.karimandco.auth` → Copy → aller dans le nouveau projet, clique droit sur `Source Packages` → Paste
+Aller sur Netbeans → ouvrir le projet → clique droit sur le package `com.karimandco.auth` → Copy → aller dans le nouveau projet, clique droit sur `Source Packages` → Paste
 
 + 3ème étape, pour intégrer un composant dans un `JFrame Form` ou `JPanel Form` :
 
