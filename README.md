@@ -39,6 +39,5 @@ Clique droit sur la classe `PanneauFormConnexion` ou `PanneauFormInscription` �
 #### Informations utiles pour la base de données
 Toutes les méthodes en lien avec la base de données sont regroupées dans la classe DaoSIO.  
 
-Pour exécuter une requête de type SELECT, on doit saisir : DaoSIO.getInstance().requeteSelection(`SQL`)  
-
+Pour exécuter une requête de type SELECT, on doit saisir : DaoSIO.getInstance().requeteSelection(`SQL`)
 Pour exécuter une requête de type ACTION, on doit saisir : DaoSIO.getInstance().requeteAction(`SQL`)
