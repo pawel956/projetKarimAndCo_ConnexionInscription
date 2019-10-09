@@ -47,7 +47,7 @@ Clique droit sur la classe `PanneauFormConnexion` ou `PanneauFormInscription` �
 ⚠ Ne pas oublier d'intégrer les dépendances dans le projet
 
 #### Pour tester ce composant sur Netbeans
-Après avoir télécharger et ouvert le projet :
+Après avoir télécharger et ouvert le projet :  
 Cliquer sur `Clean and build` → lancer le projet depuis la classe `TestForm`
 
 #### Informations utiles pour la base de données
