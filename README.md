@@ -26,7 +26,7 @@ Avec ce composant, on peut :
 Javadoc : [cliquez-ici](https://pawel956.github.io/projetKarimAndCo_ConnexionInscription/)  
 Document utilisateur : [cliquez-ici](https://docs.google.com/document/d/1nW1IItZ4RfnRoahEaQirap2QfmtTX6tPgkBLDmhopvI/edit?usp=sharing)
 
-#### Dépendances utilisés
+#### Dépendances utilisées
 <a href="http://mirrors.ircam.fr/pub/apache//commons/net/binaries/commons-net-3.6-bin.zip"><img src="https://img.shields.io/badge/commons--net-3.6-success"></a>  
 
 <a href="https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.48/mysql-connector-java-5.1.48.jar"><img src="https://img.shields.io/badge/mysql--connector--java-5.1.48-success"></a>
