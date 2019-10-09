@@ -187,8 +187,8 @@ public class PanneauFormInscription extends javax.swing.JPanel {
                 jLabelEtatInscription.setText("Echec de l'inscription");
             }
         } else {
-            jLabelEtatInscription.setForeground(Color.black);
-            jLabelEtatInscription.setText("");
+            jLabelEtatInscription.setForeground(Color.red);
+            jLabelEtatInscription.setText("Champ(s) manquant(s)");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

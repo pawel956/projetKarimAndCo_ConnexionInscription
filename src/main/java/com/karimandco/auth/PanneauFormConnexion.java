@@ -171,12 +171,16 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
                 if (lesResultats.next()) {
                     jLabelEtatConnexion.setForeground(Color.blue);
                     jLabelEtatConnexion.setText("Connexion réussie");
+                    Utilisateur.getInstance(this.panneauIdentifiant.getChamp2().getText());
                 } else {
                     jLabelEtatConnexion.setForeground(Color.red);
                     jLabelEtatConnexion.setText("Identifiant et/ou mot de passe incorrect(s)");
                 }
             } catch (Exception e) {
             }
+        } else {
+            jLabelEtatConnexion.setForeground(Color.red);
+            jLabelEtatConnexion.setText("Champ(s) manquant(s)");
         }
     }//GEN-LAST:event_jButtonConnexionActionPerformed
 
