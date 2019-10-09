@@ -1,4 +1,3 @@
-
 <p align="center">
 <img src="https://image.flaticon.com/icons/svg/311/311334.svg" width="150">
 </p>
@@ -33,11 +32,15 @@ Document utilisateur : [cliquez-ici](https://docs.google.com/document/d/1nW1IItZ
 <a href="https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.48/mysql-connector-java-5.1.48.jar"><img src="https://img.shields.io/badge/mysql--connector--java-5.1.48-success"></a>
 
 #### Pour intégrer ce composant à un projet sur Netbeans
-+ 1ère étape, pour intégrer le package au nouveau projet :
++ 1ère étape, pour télécharger le package :
+
+Aller sur la page <a href="https://github.com/pawel956/projetKarimAndCo_ConnexionInscription">Github</a> du projet → cliquer sur le bouton vert `Clone or download` → cliquer sur `Download ZIP` → aller dans le dossier des téléchargements → extraire le package du fichier .zip
+
++ 2ère étape, pour intégrer le package au nouveau projet :
 
 Ouvrir le projet → clique droit sur le package `com.karimandco.auth` → Copy → aller dans le nouveau projet, clique droit sur `Source Packages` → Paste
 
-+ 2ème étape, pour intégrer un composant dans un `JFrame Form` ou `JPanel Form` :
++ 3ème étape, pour intégrer un composant dans un `JFrame Form` ou `JPanel Form` :
 
 Clique droit sur la classe `PanneauFormConnexion` ou `PanneauFormInscription` → Tools → Add to Palette → choisir une catégorie de Palette → aller dans une classe de type `JFrame Form` ou `JPanel Form` → aller dans l'onglet `Design` → sur la droite, cliquer sur le composant et recliquer dans la fenêtre pour placer le composant
 
