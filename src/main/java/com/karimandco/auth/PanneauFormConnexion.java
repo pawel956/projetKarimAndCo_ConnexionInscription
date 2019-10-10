@@ -51,22 +51,7 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
             @Override
             public void keyReleased(KeyEvent e) {
                 // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
-                if (!panneauIdentifiant.getChamp2().getText().equals("")) {
-                    if (panneauIdentifiant.getChamp2().verifIdentifiant()) {
-                        panneauIdentifiant.setjLabelEtatChamp(Color.blue);
-                        panneauIdentifiant.setjLabelEtatChamp("Format ok");
-                        setIdentifiantOK(true);
-                    } else {
-                        panneauIdentifiant.setjLabelEtatChamp(Color.red);
-                        panneauIdentifiant.setjLabelEtatChamp("Format non ok");
-                        setIdentifiantOK(false);
-                    }
-                } else {
-                    panneauIdentifiant.setjLabelEtatChamp(Color.black);
-                    panneauIdentifiant.setjLabelEtatChamp("");
-                    setIdentifiantOK(false);
-                }
+                updateJLabelEtatChamp();
             }
         });
 
@@ -84,22 +69,7 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
             @Override
             public void keyReleased(KeyEvent e) {
                 // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
-                if (!String.valueOf(panneauMdp.getChampSecret1().getPassword()).equals("")) {
-                    if (panneauMdp.getChampSecret1().verifPassword()) {
-                        panneauMdp.setjLabelEtatChampSecret(Color.blue);
-                        panneauMdp.setjLabelEtatChampSecret("Format ok");
-                        setMdpOK(true);
-                    } else {
-                        panneauMdp.setjLabelEtatChampSecret(Color.red);
-                        panneauMdp.setjLabelEtatChampSecret("Format non ok");
-                        setMdpOK(false);
-                    }
-                } else {
-                    panneauMdp.setjLabelEtatChampSecret(Color.black);
-                    panneauMdp.setjLabelEtatChampSecret("");
-                    setMdpOK(false);
-                }
+                updateJLabelEtatChampSecret();
             }
         });
     }
@@ -183,6 +153,49 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
             jLabelEtatConnexion.setText("Champ(s) manquant(s)");
         }
     }//GEN-LAST:event_jButtonConnexionActionPerformed
+
+    /**
+     * Cette méthode permet de mettre à jour le JLabelEtat du champs identifiant
+     */
+    public void updateJLabelEtatChamp() {
+        if (!panneauIdentifiant.getChamp2().getText().equals("")) {
+            if (panneauIdentifiant.getChamp2().verifIdentifiant()) {
+                panneauIdentifiant.setjLabelEtatChamp(Color.blue);
+                panneauIdentifiant.setjLabelEtatChamp("Format ok");
+                setIdentifiantOK(true);
+            } else {
+                panneauIdentifiant.setjLabelEtatChamp(Color.red);
+                panneauIdentifiant.setjLabelEtatChamp("Format non ok");
+                setIdentifiantOK(false);
+            }
+        } else {
+            panneauIdentifiant.setjLabelEtatChamp(Color.black);
+            panneauIdentifiant.setjLabelEtatChamp("");
+            setIdentifiantOK(false);
+        }
+    }
+
+    /**
+     * Cette méthode permet de mettre à jour le JLabelEtat du champs secret mot
+     * de passe
+     */
+    public void updateJLabelEtatChampSecret() {
+        if (!String.valueOf(panneauMdp.getChampSecret1().getPassword()).equals("")) {
+            if (panneauMdp.getChampSecret1().verifPassword()) {
+                panneauMdp.setjLabelEtatChampSecret(Color.blue);
+                panneauMdp.setjLabelEtatChampSecret("Format ok");
+                setMdpOK(true);
+            } else {
+                panneauMdp.setjLabelEtatChampSecret(Color.red);
+                panneauMdp.setjLabelEtatChampSecret("Format non ok");
+                setMdpOK(false);
+            }
+        } else {
+            panneauMdp.setjLabelEtatChampSecret(Color.black);
+            panneauMdp.setjLabelEtatChampSecret("");
+            setMdpOK(false);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConnexion;

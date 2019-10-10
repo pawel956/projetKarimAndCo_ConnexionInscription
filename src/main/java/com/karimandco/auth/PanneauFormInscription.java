@@ -210,7 +210,7 @@ public class PanneauFormInscription extends javax.swing.JPanel {
      * Cette méthode permet de générer un KeyListener pour les panneaux champ.
      *
      * @param champ PanneauChamp champ
-     * @param numeroVerif Integer numéro vérification
+     * @param numeroVerif Integer numéro du champ
      */
     private void KeyListener(PanneauChamp champ, Integer numeroVerif) {
         champ.getChamp2().addKeyListener(new KeyListener() {
@@ -227,39 +227,7 @@ public class PanneauFormInscription extends javax.swing.JPanel {
             @Override
             public void keyReleased(KeyEvent e) {
                 // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                Boolean resultat = null;
-                if (!champ.getChamp2().getText().equals("")) {
-                    if (numeroVerif == 0) {
-                        resultat = champ.getChamp2().verifNom();
-                        setNomOK(resultat);
-                    } else if (numeroVerif == 1) {
-                        resultat = champ.getChamp2().verifPrenom();
-                        setPrenomOK(resultat);
-                    } else if (numeroVerif == 2) {
-                        resultat = champ.getChamp2().verifIdentifiant();
-                        setIdentifiantOK(resultat);
-                    } else if (numeroVerif == 3) {
-                        resultat = champ.getChamp2().verifCourriel();
-                        setCourrielOK(resultat);
-                    } else if (numeroVerif == 4) {
-                        resultat = champ.getChamp2().verifNumeroTelephone();
-                        setNumeroTelephoneOK(resultat);
-                    } else if (numeroVerif == 5) {
-                        resultat = champ.getChamp2().verifDateNaissance();
-                        setDateNaissanceOK(resultat);
-                    }
-
-                    if (resultat == true) {
-                        champ.setjLabelEtatChamp(Color.blue);
-                        champ.setjLabelEtatChamp("Format ok");
-                    } else {
-                        champ.setjLabelEtatChamp(Color.red);
-                        champ.setjLabelEtatChamp("Format non ok");
-                    }
-                } else {
-                    champ.setjLabelEtatChamp(Color.black);
-                    champ.setjLabelEtatChamp("");
-                }
+                updateJLabelEtat(champ, numeroVerif);
             }
         });
     }
@@ -285,33 +253,83 @@ public class PanneauFormInscription extends javax.swing.JPanel {
             @Override
             public void keyReleased(KeyEvent e) {
                 // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                if (!String.valueOf(champ.getChampSecret1().getPassword()).equals("")) {
-
-                    if (String.valueOf(panneauMdpConfirmation.getChampSecret1().getPassword()).equals(String.valueOf(panneauMdp.getChampSecret1().getPassword()))) {
-                        if (panneauMdpConfirmation.getChampSecret1().verifPassword() && panneauMdp.getChampSecret1().verifPassword()) {
-                            setMdpOK(champ.getChampSecret1().verifPassword());
-                            panneauMdpConfirmation.setjLabelEtatChampSecret(Color.blue);
-                            panneauMdp.setjLabelEtatChampSecret(Color.blue);
-                            panneauMdpConfirmation.setjLabelEtatChampSecret("Correspondance ok");
-                            panneauMdp.setjLabelEtatChampSecret("Correspondance ok");
-                        } else {
-                            panneauMdpConfirmation.setjLabelEtatChampSecret(Color.red);
-                            panneauMdp.setjLabelEtatChampSecret(Color.red);
-                            panneauMdpConfirmation.setjLabelEtatChampSecret("Format non ok");
-                            panneauMdp.setjLabelEtatChampSecret("Format non ok");
-                        }
-                    } else {
-                        panneauMdpConfirmation.setjLabelEtatChampSecret(Color.red);
-                        panneauMdp.setjLabelEtatChampSecret(Color.red);
-                        panneauMdpConfirmation.setjLabelEtatChampSecret("Correspondance non ok");
-                        panneauMdp.setjLabelEtatChampSecret("Correspondance non ok");
-                    }
-                } else {
-                    champ.setjLabelEtatChampSecret(Color.black);
-                    champ.setjLabelEtatChampSecret("");
-                }
+                updateJLabelEtat(champ);
             }
         });
+    }
+
+    /**
+     * Cette méthode permet de mettre à jour les JLabelEtat des champs
+     *
+     * @param champ PanneauChamp champ
+     * @param numeroVerif Integer numéro du champ à vérifier
+     */
+    public void updateJLabelEtat(PanneauChamp champ, Integer numeroVerif) {
+        Boolean resultat = null;
+        if (!champ.getChamp2().getText().equals("")) {
+            if (numeroVerif == 0) {
+                resultat = champ.getChamp2().verifNom();
+                setNomOK(resultat);
+            } else if (numeroVerif == 1) {
+                resultat = champ.getChamp2().verifPrenom();
+                setPrenomOK(resultat);
+            } else if (numeroVerif == 2) {
+                resultat = champ.getChamp2().verifIdentifiant();
+                setIdentifiantOK(resultat);
+            } else if (numeroVerif == 3) {
+                resultat = champ.getChamp2().verifCourriel();
+                setCourrielOK(resultat);
+            } else if (numeroVerif == 4) {
+                resultat = champ.getChamp2().verifNumeroTelephone();
+                setNumeroTelephoneOK(resultat);
+            } else if (numeroVerif == 5) {
+                resultat = champ.getChamp2().verifDateNaissance();
+                setDateNaissanceOK(resultat);
+            }
+
+            if (resultat == true) {
+                champ.setjLabelEtatChamp(Color.blue);
+                champ.setjLabelEtatChamp("Format ok");
+            } else {
+                champ.setjLabelEtatChamp(Color.red);
+                champ.setjLabelEtatChamp("Format non ok");
+            }
+        } else {
+            champ.setjLabelEtatChamp(Color.black);
+            champ.setjLabelEtatChamp("");
+        }
+    }
+
+    /**
+     * Cette méthode permet de mettre à jour les JLabelEtat des champs secrets
+     *
+     * @param champ PanneauChampSecret champ
+     */
+    public void updateJLabelEtat(PanneauChampSecret champ) {
+        if (!String.valueOf(champ.getChampSecret1().getPassword()).equals("")) {
+            if (String.valueOf(panneauMdpConfirmation.getChampSecret1().getPassword()).equals(String.valueOf(panneauMdp.getChampSecret1().getPassword()))) {
+                if (panneauMdpConfirmation.getChampSecret1().verifPassword() && panneauMdp.getChampSecret1().verifPassword()) {
+                    setMdpOK(champ.getChampSecret1().verifPassword());
+                    panneauMdpConfirmation.setjLabelEtatChampSecret(Color.blue);
+                    panneauMdp.setjLabelEtatChampSecret(Color.blue);
+                    panneauMdpConfirmation.setjLabelEtatChampSecret("Correspondance ok");
+                    panneauMdp.setjLabelEtatChampSecret("Correspondance ok");
+                } else {
+                    panneauMdpConfirmation.setjLabelEtatChampSecret(Color.red);
+                    panneauMdp.setjLabelEtatChampSecret(Color.red);
+                    panneauMdpConfirmation.setjLabelEtatChampSecret("Format non ok");
+                    panneauMdp.setjLabelEtatChampSecret("Format non ok");
+                }
+            } else {
+                panneauMdpConfirmation.setjLabelEtatChampSecret(Color.red);
+                panneauMdp.setjLabelEtatChampSecret(Color.red);
+                panneauMdpConfirmation.setjLabelEtatChampSecret("Correspondance non ok");
+                panneauMdp.setjLabelEtatChampSecret("Correspondance non ok");
+            }
+        } else {
+            champ.setjLabelEtatChampSecret(Color.black);
+            champ.setjLabelEtatChampSecret("");
+        }
     }
 
 }

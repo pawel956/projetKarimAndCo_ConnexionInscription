@@ -58,7 +58,7 @@ public class ChampSecret extends JPasswordField implements KeyListener {
      *
      * @return Boolean true or false
      */
-    Boolean verifPassword() {
+    public Boolean verifPassword() {
         Boolean passwordOK = true;
         String password = String.valueOf(this.getPassword());
 
