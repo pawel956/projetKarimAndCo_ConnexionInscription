@@ -19,45 +19,25 @@ public class Utilisateur {
 
     private static Utilisateur monUtilisateur = null;
 
-    public Boolean estConnecte = false;
+    private static String identifiant;
 
-    public Integer id;
-    public Integer statut;
-    public String identifiant;
-    public String nom;
-    public String prenom;
-    public String numeroTelephone;
-    public String courriel;
-    public String dateNaissance;
-    public Blob photo;
+    private Boolean estConnecte = false;
 
-    /**
-     * Ce constructeur permet d'initialiser les propriétés contenant les
-     * informations de l'utilisateur en fesant une requête à la bdd avec
-     * l'identifiant de l'utilisateur.
-     *
-     * @param identifiant String identifiant de l'utilisateur
-     */
-    private Utilisateur(String identifiant) {
-        ResultSet lesResultats = DaoSIO.getInstance().requeteSelection("SELECT * FROM utilisateurs WHERE identifiant='" + identifiant + "'");
+    private Integer id;
+    private Integer statut;
+    private String nom;
+    private String prenom;
+    private String numeroTelephone;
+    private String courriel;
+    private String dateNaissance;
+    private Blob photo;
 
-        try {
-            if (lesResultats.next()) {
-                this.id = lesResultats.getInt("id");
-                this.statut = lesResultats.getInt("statut");
-                this.identifiant = identifiant;
-                this.nom = lesResultats.getString("nom");
-                this.prenom = lesResultats.getString("prenom");
-                this.numeroTelephone = lesResultats.getString("num_telephone");
-                this.courriel = lesResultats.getString("courriel");
-                this.dateNaissance = lesResultats.getString("date_de_naissance");
-                this.photo = lesResultats.getBlob("photo");
+    public static String getIdentifiant() {
+        return identifiant;
+    }
 
-                this.estConnecte = true;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Utilisateur.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public static void setIdentifiant(String identifiant) {
+        Utilisateur.identifiant = identifiant;
     }
 
     /**
@@ -71,6 +51,7 @@ public class Utilisateur {
 
     /**
      * Cette méthode permet de définir la propriété estConnecte
+     *
      * @param estConnecte Boolean true or false
      */
     public void setEstConnecte(Boolean estConnecte) {
@@ -91,14 +72,6 @@ public class Utilisateur {
 
     public void setStatut(Integer statut) {
         this.statut = statut;
-    }
-
-    public String getIdentifiant() {
-        return identifiant;
-    }
-
-    public void setIdentifiant(String identifiant) {
-        this.identifiant = identifiant;
     }
 
     public String getNom() {
@@ -152,14 +125,41 @@ public class Utilisateur {
     /**
      * Permet d'obtenir l'objet instancié
      *
-     * @param identifiant String identifiant de l'utilisateur
      * @return un Objet Utilisateur
      */
-    public static Utilisateur getInstance(String identifiant) {
+    public static Utilisateur getInstance() {
         if (Utilisateur.monUtilisateur == null) {
-            Utilisateur.monUtilisateur = new Utilisateur(identifiant);
+            Utilisateur.monUtilisateur = new Utilisateur();
         }
         return Utilisateur.monUtilisateur;
     }
 
+    /**
+     * Cette méthode permet d'initialiser les propriétés contenant les
+     * informations de l'utilisateur en fesant une requête à la bdd avec
+     * l'identifiant de l'utilisateur et de mettre true à la propriété
+     * estConnecte.
+     */
+    public void chargerInformationsUtilisateur() {
+        if (Utilisateur.identifiant != null) {
+            ResultSet lesResultats = DaoSIO.getInstance().requeteSelection("SELECT * FROM utilisateurs WHERE identifiant='" + Utilisateur.identifiant + "'");
+
+            try {
+                if (lesResultats.next()) {
+                    this.id = lesResultats.getInt("id");
+                    this.statut = lesResultats.getInt("statut");
+                    this.nom = lesResultats.getString("nom");
+                    this.prenom = lesResultats.getString("prenom");
+                    this.numeroTelephone = lesResultats.getString("num_telephone");
+                    this.courriel = lesResultats.getString("courriel");
+                    this.dateNaissance = lesResultats.getString("date_de_naissance");
+                    this.photo = lesResultats.getBlob("photo");
+
+                    this.estConnecte = true;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Utilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }

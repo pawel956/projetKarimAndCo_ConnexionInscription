@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.ResultSet;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
@@ -25,6 +27,14 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
 
     public void setMdpOK(Boolean mdpOK) {
         this.mdpOK = mdpOK;
+    }
+
+    public JButton getjButtonConnexion() {
+        return jButtonConnexion;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
     }
 
     /**
@@ -141,7 +151,8 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
                 if (lesResultats.next()) {
                     jLabelEtatConnexion.setForeground(Color.blue);
                     jLabelEtatConnexion.setText("Connexion réussie");
-                    Utilisateur.getInstance(this.panneauIdentifiant.getChamp2().getText());
+                    Utilisateur.setIdentifiant(this.panneauIdentifiant.getChamp2().getText());
+                    Utilisateur.getInstance().chargerInformationsUtilisateur();
                 } else {
                     jLabelEtatConnexion.setForeground(Color.red);
                     jLabelEtatConnexion.setText("Identifiant et/ou mot de passe incorrect(s)");
