@@ -34,7 +34,9 @@ Document utilisateur : [cliquez-ici](https://docs.google.com/document/d/1nW1IItZ
 #### Pour intégrer ce composant à un projet sur Netbeans
 + 1ère étape, pour télécharger le package :
 
-[cliquez-ici](https://github.com/pawel956/projetKarimAndCo_ConnexionInscription/archive/master.zip) → aller dans le dossier des téléchargements → extraire le package du fichier .zip
+	+ 1ère méthode : [cliquez-ici](https://github.com/pawel956/projetKarimAndCo_ConnexionInscription/archive/master.zip) → aller dans le dossier des téléchargements → extraire le package du fichier .zip
+
+	+ 2ème méthode : ouvrir Netbeans → aller dans l'onglet `Team` → puis aller dans `Git` → et enfin dans `Clone` → mettre ce lien : https://github.com/pawel956/projetKarimAndCo_ConnexionInscription.git  dans `Repository URL` → et cliquer sur `Finish`
 
 + 2ère étape, pour intégrer le package au nouveau projet :
 
@@ -50,8 +52,31 @@ Clique droit sur la classe `PanneauFormConnexion` ou `PanneauFormInscription` �
 Après avoir télécharger et ouvert le projet :  
 Cliquer sur `Clean and build` → lancer le projet depuis la classe `TestForm`
 
-#### Informations utiles pour la base de données
-Toutes les méthodes en lien avec la base de données sont regroupées dans la classe DaoSIO.  
+#### Informations utiles pour accéder à la base de données avec la classe DaoSIO
+Pour exécuter une requête de type SELECT, on doit saisir :
+```java
+DaoSIO.getInstance().requeteSelection("Code SQL")
+```
 
-Pour exécuter une requête de type SELECT, on doit saisir : DaoSIO.getInstance().requeteSelection(`SQL`)  
-Pour exécuter une requête de type ACTION, on doit saisir : DaoSIO.getInstance().requeteAction(`SQL`)
+Pour exécuter une requête de type ACTION, on doit saisir :
+```java
+DaoSIO.getInstance().requeteAction("Code SQL")
+```
+
+#### Informations utiles pour accéder aux informations de l'utilisateur avec la classe Utilisateur
+On peut avoir accès à plusieurs informations sur l'utilisateur comme l'identifiant, l'id, le statut, le nom, le prénom, le numéro de téléphone, le courriel, la date de naissance, la photo
+
+Par exemple, pour avoir accès au prénom de l'utilisateur, on doit saisir : 
+```java
+// d'abord on doit définir la propriété identifiant
+Utilisateur.setIdentifiant("Admin");
+// ensuite on récupère les informations de l'utilisateur avec une requête SQL
+Utilisateur.getInstance().chargerInformationsUtilisateur();
+// et enfin on peut accéder par exemple au prénom de l'utilisateur
+Utilisateur.getInstance().getPrenom();
+```
+
+Pour savoir si l'utilisateur est connecté ou pas, on doit saisir :
+```java
+Utilisateur.getInstance().getEstConnecte();
+```
