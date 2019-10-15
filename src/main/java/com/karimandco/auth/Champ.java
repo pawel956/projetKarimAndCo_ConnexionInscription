@@ -170,7 +170,7 @@ public class Champ extends JTextField implements KeyListener {
                 String date_gregorian_jour;
                 String date_gregorian_mois;
 
-                if ((calendrier.get(Calendar.DATE) + 1) < 10 && dateNaissance_split[0].length() == 2) {
+                if ((calendrier.get(Calendar.DATE) + 1) <= 10 && dateNaissance_split[0].length() == 2) {
                     date_gregorian_jour = "0" + calendrier.get(Calendar.DATE);
                 } else {
                     date_gregorian_jour = String.valueOf(calendrier.get(Calendar.DATE));
@@ -183,7 +183,7 @@ public class Champ extends JTextField implements KeyListener {
                 }
 
                 date_gregorian = date_gregorian_jour + "/" + date_gregorian_mois + "/" + calendrier.get(Calendar.YEAR);
-
+                System.out.println(date_gregorian);
                 if (!dateNaissance.equals(date_gregorian)) {
                     dateNaissanceOK = false;
                 }
