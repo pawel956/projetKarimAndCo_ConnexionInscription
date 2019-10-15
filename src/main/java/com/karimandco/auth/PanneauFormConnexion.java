@@ -52,7 +52,7 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
         initComponents();
 
         panneauIdentifiant.setjLabelNomChamp("Identifiant");
-        panneauMdp.setjLabelNomChampSecret("Mot de passe");
+        panneauMdp.setjLabelNomChampSecret("Mot de passe (min 6 caractères)");
 
         panneauIdentifiant.getChamp2().addKeyListener(new KeyListener() {
             @Override
