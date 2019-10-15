@@ -8,6 +8,7 @@ package com.karimandco.auth;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.JButton;
 
 /**
  *
@@ -79,6 +80,10 @@ public class PanneauFormInscription extends javax.swing.JPanel {
         this.mdpOK = mdpOK;
     }
 
+    public JButton getjButton1() {
+        return jButton1;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
