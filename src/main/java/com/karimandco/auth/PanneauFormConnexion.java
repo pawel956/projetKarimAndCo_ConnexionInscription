@@ -18,6 +18,8 @@ import javax.swing.JLabel;
  */
 public class PanneauFormConnexion extends javax.swing.JPanel {
 
+    javax.swing.JDialog panneauPereConnexion = null;
+    
     private Boolean identifiantOK = false;
     private Boolean mdpOK = false;
 
@@ -35,6 +37,10 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
 
     public JLabel getjLabel1() {
         return jLabel1;
+    }
+
+    public void setFenParentConnexion(javax.swing.JDialog i) {
+        this.panneauPereConnexion = i;
     }
 
     /**

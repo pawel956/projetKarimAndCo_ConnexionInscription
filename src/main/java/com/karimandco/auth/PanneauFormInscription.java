@@ -16,6 +16,8 @@ import javax.swing.JButton;
  */
 public class PanneauFormInscription extends javax.swing.JPanel {
 
+    javax.swing.JDialog panneauPereInscription = null;
+    
     private Boolean nomOK = false;
     private Boolean prenomOK = false;
     private Boolean identifiantOK = false;
@@ -83,7 +85,11 @@ public class PanneauFormInscription extends javax.swing.JPanel {
     public JButton getjButton1() {
         return jButton1;
     }
-    
+
+    public void setFenParentInscription(javax.swing.JDialog i) {
+        this.panneauPereInscription = i;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
