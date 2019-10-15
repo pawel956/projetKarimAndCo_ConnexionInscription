@@ -5,6 +5,7 @@
  */
 package com.karimandco.auth;
 
+import com.karimandco.bdd.DaoSIO;
 import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
