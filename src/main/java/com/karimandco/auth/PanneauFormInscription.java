@@ -43,7 +43,7 @@ public class PanneauFormInscription extends javax.swing.JPanel {
         panneauNumeroTelephone.setjLabelNomChamp("Numéro de téléphone");
         panneauDateNaissance.setjLabelNomChamp("Date de naissance (jj/mm/aaaa)");
 
-        panneauMdp.setjLabelNomChampSecret("Mot de passe (min 6 caractères)");
+        panneauMdp.setjLabelNomChampSecret("Mot de passe (6 à 12 chiffres)");
         panneauMdpConfirmation.setjLabelNomChampSecret("Confirmation du mot de passe");
 
         KeyListener(panneauNom, 0);
