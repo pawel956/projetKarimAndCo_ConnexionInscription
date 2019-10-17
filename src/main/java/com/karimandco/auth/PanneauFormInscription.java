@@ -26,6 +26,7 @@ public class PanneauFormInscription extends javax.swing.JPanel {
     private Boolean numeroTelephoneOK = false;
     private Boolean dateNaissanceOK = false;
     private Boolean mdpOK = false;
+    private Boolean mdpConfOK = false;
 
     private Boolean inscriptionOK = false;
 
@@ -83,6 +84,10 @@ public class PanneauFormInscription extends javax.swing.JPanel {
 
     public void setMdpOK(Boolean mdpOK) {
         this.mdpOK = mdpOK;
+    }
+
+    public void setMdpConfOK(Boolean mdpConfOK) {
+        this.mdpConfOK = mdpConfOK;
     }
 
     public JButton getjButton1() {
@@ -213,7 +218,7 @@ public class PanneauFormInscription extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (nomOK && prenomOK && identifiantOK && courrielOK && numeroTelephoneOK && dateNaissanceOK && mdpOK) {
+        if (nomOK && prenomOK && identifiantOK && courrielOK && numeroTelephoneOK && dateNaissanceOK && mdpOK && mdpConfOK) {
             String[] date_split = this.panneauDateNaissance.getChamp2().getText().split("/");
             String date_newFormat = date_split[2] + "-" + date_split[1] + "-" + date_split[0];
 
@@ -296,7 +301,7 @@ public class PanneauFormInscription extends javax.swing.JPanel {
             @Override
             public void keyReleased(KeyEvent e) {
                 // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                updateJLabelEtat(champ);
+                updateJLabelEtat();
             }
         });
     }
@@ -345,33 +350,40 @@ public class PanneauFormInscription extends javax.swing.JPanel {
 
     /**
      * Cette méthode permet de mettre à jour les JLabelEtat des champs secrets
-     *
-     * @param champ PanneauChampSecret champ
      */
-    public void updateJLabelEtat(PanneauChampSecret champ) {
-        if (!String.valueOf(champ.getChampSecret1().getPassword()).equals("")) {
-            if (String.valueOf(panneauMdpConfirmation.getChampSecret1().getPassword()).equals(String.valueOf(panneauMdp.getChampSecret1().getPassword()))) {
-                if (panneauMdpConfirmation.getChampSecret1().verifPassword() && panneauMdp.getChampSecret1().verifPassword()) {
-                    setMdpOK(champ.getChampSecret1().verifPassword());
+    public void updateJLabelEtat() {
+        if (!String.valueOf(panneauMdp.getChampSecret1().getPassword()).equals("") && !String.valueOf(panneauMdpConfirmation.getChampSecret1().getPassword()).equals("")) {
+            if (panneauMdp.getChampSecret1().verifPassword() && panneauMdpConfirmation.getChampSecret1().verifPassword()) {
+                if (String.valueOf(panneauMdp.getChampSecret1().getPassword()).equals(String.valueOf(panneauMdpConfirmation.getChampSecret1().getPassword()))) {
+                    setMdpOK(true);
+                    setMdpConfOK(true);
                     panneauMdpConfirmation.setjLabelEtatChampSecret(Color.blue);
                     panneauMdp.setjLabelEtatChampSecret(Color.blue);
                     panneauMdpConfirmation.setjLabelEtatChampSecret("Correspondance ok");
                     panneauMdp.setjLabelEtatChampSecret("Correspondance ok");
                 } else {
+                    setMdpOK(false);
+                    setMdpConfOK(false);
                     panneauMdpConfirmation.setjLabelEtatChampSecret(Color.red);
                     panneauMdp.setjLabelEtatChampSecret(Color.red);
-                    panneauMdpConfirmation.setjLabelEtatChampSecret("Format non ok");
-                    panneauMdp.setjLabelEtatChampSecret("Format non ok");
+                    panneauMdpConfirmation.setjLabelEtatChampSecret("Correspondance non ok");
+                    panneauMdp.setjLabelEtatChampSecret("Correspondance non ok");
                 }
             } else {
+                setMdpOK(false);
+                setMdpConfOK(false);
                 panneauMdpConfirmation.setjLabelEtatChampSecret(Color.red);
                 panneauMdp.setjLabelEtatChampSecret(Color.red);
-                panneauMdpConfirmation.setjLabelEtatChampSecret("Correspondance non ok");
-                panneauMdp.setjLabelEtatChampSecret("Correspondance non ok");
+                panneauMdpConfirmation.setjLabelEtatChampSecret("Format non ok");
+                panneauMdp.setjLabelEtatChampSecret("Format non ok");
             }
         } else {
-            champ.setjLabelEtatChampSecret(Color.black);
-            champ.setjLabelEtatChampSecret("");
+            setMdpOK(false);
+            setMdpConfOK(false);
+            panneauMdp.setjLabelEtatChampSecret(Color.black);
+            panneauMdp.setjLabelEtatChampSecret("");
+            panneauMdpConfirmation.setjLabelEtatChampSecret(Color.black);
+            panneauMdpConfirmation.setjLabelEtatChampSecret("");
         }
     }
 
