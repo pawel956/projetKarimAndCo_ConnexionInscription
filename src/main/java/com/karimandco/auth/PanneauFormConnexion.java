@@ -58,6 +58,10 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
         return jLabelEtatConnexion;
     }
 
+    public PanneauChamp getPanneauIdentifiant() {
+        return panneauIdentifiant;
+    }
+
     /**
      * Ce constructeur permet d'initialiser le nom des labels et de générer les
      * KeyListener pour capturer les actions.
