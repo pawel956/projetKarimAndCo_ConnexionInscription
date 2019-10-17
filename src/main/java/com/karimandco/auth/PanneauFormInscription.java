@@ -343,6 +343,20 @@ public class PanneauFormInscription extends javax.swing.JPanel {
                 champ.setjLabelEtatChamp("Format non ok");
             }
         } else {
+            if (numeroVerif == 0) {
+                setNomOK(champ.getChamp2().verifNom());
+            } else if (numeroVerif == 1) {
+                setPrenomOK(champ.getChamp2().verifPrenom());
+            } else if (numeroVerif == 2) {
+                setIdentifiantOK(champ.getChamp2().verifIdentifiant());
+            } else if (numeroVerif == 3) {
+                setCourrielOK(champ.getChamp2().verifCourriel());
+            } else if (numeroVerif == 4) {
+                setNumeroTelephoneOK(champ.getChamp2().verifNumeroTelephone());
+            } else if (numeroVerif == 5) {
+                setDateNaissanceOK(champ.getChamp2().verifDateNaissance());
+            }
+
             champ.setjLabelEtatChamp(Color.black);
             champ.setjLabelEtatChamp("");
         }
