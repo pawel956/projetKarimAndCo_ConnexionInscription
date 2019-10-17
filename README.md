@@ -70,7 +70,9 @@ Par exemple, pour afficher toutes les informations de l'utilisateur, on doit sai
 ```java
 // d'abord on doit définir la propriété identifiant
 Utilisateur.setIdentifiant("Admin");
-// ensuite on utilise la méthode getAll qui permet d'afficher toutes les informations de l'utilisateur (utile pour débug)
+// ensuite on met à jour les propriétés qui contiennent les informations de l'utilisateur
+Utilisateur.getInstance().chargerInformationsUtilisateur();
+// et enfin on utilise la méthode getAll qui permet d'afficher toutes les informations de l'utilisateur (utile pour débug)
 Utilisateur.getInstance().getAll();
 ```
 
@@ -78,7 +80,9 @@ Par exemple, pour avoir accès au prénom de l'utilisateur, on doit saisir :
 ```java
 // d'abord on doit définir la propriété identifiant
 Utilisateur.setIdentifiant("Admin");
-// ensuite on utilise la méthode getPrenom pour accéder au prénom de l'utilisateur
+// ensuite on met à jour les propriétés qui contiennent les informations de l'utilisateur
+Utilisateur.getInstance().chargerInformationsUtilisateur();
+// et enfin  on utilise la méthode getPrenom pour accéder au prénom de l'utilisateur
 Utilisateur.getInstance().getPrenom();
 ```
 
