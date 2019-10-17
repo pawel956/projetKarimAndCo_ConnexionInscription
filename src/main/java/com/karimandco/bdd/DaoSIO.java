@@ -84,11 +84,19 @@ public class DaoSIO {
         Boolean connexionActive = true;
 
         try {
-            if (this.connexion.isClosed()) {
-                connexionActive = false;
+            if (this.connexion != null) {
+                ResultSet resultat = this.connexion.createStatement().executeQuery("SELECT 1");
+                if (!resultat.next()) {
+                    connexionActive = false;
+                }
             }
+
         } catch (SQLException ex) {
-            Logger.getLogger(DaoSIO.class.getName()).log(Level.SEVERE, null, ex);
+            if (ex.toString().contains("com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure")) {
+                connexionActive = false;
+            } else {
+                Logger.getLogger(DaoSIO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return connexionActive;
     }
