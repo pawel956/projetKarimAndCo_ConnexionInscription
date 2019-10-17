@@ -65,7 +65,7 @@ public class ChampSecret extends JPasswordField implements KeyListener {
         if (password.equals("")) {
             passwordOK = false;
         } else {
-            Pattern p = Pattern.compile("^(\\p{Digit}){6,}");
+            Pattern p = Pattern.compile("^(\\p{Digit}){6,12}");
             Matcher m = p.matcher(password);
             passwordOK = m.matches();
         }
