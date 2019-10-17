@@ -18,7 +18,7 @@ import javax.swing.JButton;
 public class PanneauFormInscription extends javax.swing.JPanel {
 
     javax.swing.JDialog panneauPereInscription = null;
-    
+
     private Boolean nomOK = false;
     private Boolean prenomOK = false;
     private Boolean identifiantOK = false;
@@ -26,6 +26,8 @@ public class PanneauFormInscription extends javax.swing.JPanel {
     private Boolean numeroTelephoneOK = false;
     private Boolean dateNaissanceOK = false;
     private Boolean mdpOK = false;
+
+    private Boolean inscriptionOK = false;
 
     /**
      * Ce constructeur permet d'initialiser le nom des labels et de générer les
@@ -89,6 +91,14 @@ public class PanneauFormInscription extends javax.swing.JPanel {
 
     public void setFenParentInscription(javax.swing.JDialog i) {
         this.panneauPereInscription = i;
+    }
+
+    public Boolean getInscriptionOK() {
+        return inscriptionOK;
+    }
+
+    public void setInscriptionOK(Boolean inscriptionOK) {
+        this.inscriptionOK = inscriptionOK;
     }
 
     /**
@@ -191,16 +201,21 @@ public class PanneauFormInscription extends javax.swing.JPanel {
             String[] date_split = this.panneauDateNaissance.getChamp2().getText().split("/");
             String date_newFormat = date_split[2] + "-" + date_split[1] + "-" + date_split[0];
 
-            if (DaoSIO.getInstance().requeteAction("INSERT INTO utilisateurs (nom, prenom, identifiant, courriel, num_telephone, date_de_naissance, mot_de_passe, photo) VALUES ('" + this.panneauNom.getChamp2().getText() + "', '" + this.panneauPrenom.getChamp2().getText() + "', '" + this.panneauIdentifiant.getChamp2().getText() + "', '" + this.panneauCourriel.getChamp2().getText() + "', '" + this.panneauNumeroTelephone.getChamp2().getText() + "', '" + date_newFormat + "', '" + String.valueOf(this.panneauMdp.getChampSecret1().getPassword()) + "', '')") > 0) {
+            String mdp_sha256 = Cryptage.sha256(Cryptage.sha256(String.valueOf(this.panneauMdp.getChampSecret1().getPassword())));
+
+            if (DaoSIO.getInstance().requeteAction("INSERT INTO utilisateurs (nom, prenom, identifiant, courriel, num_telephone, date_de_naissance, mot_de_passe, photo) VALUES ('" + this.panneauNom.getChamp2().getText() + "', '" + this.panneauPrenom.getChamp2().getText() + "', '" + this.panneauIdentifiant.getChamp2().getText() + "', '" + this.panneauCourriel.getChamp2().getText() + "', '" + this.panneauNumeroTelephone.getChamp2().getText() + "', '" + date_newFormat + "', '" + mdp_sha256 + "', '')") > 0) {
                 jLabelEtatInscription.setForeground(Color.blue);
                 jLabelEtatInscription.setText("Inscription réussi");
+                this.setInscriptionOK(true);
             } else {
                 jLabelEtatInscription.setForeground(Color.red);
                 jLabelEtatInscription.setText("Echec de l'inscription");
+                this.setInscriptionOK(false);
             }
         } else {
             jLabelEtatInscription.setForeground(Color.red);
             jLabelEtatInscription.setText("Champ(s) manquant(s)");
+            this.setInscriptionOK(false);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -20,9 +20,11 @@ import javax.swing.JLabel;
 public class PanneauFormConnexion extends javax.swing.JPanel {
 
     javax.swing.JDialog panneauPereConnexion = null;
-    
+
     private Boolean identifiantOK = false;
     private Boolean mdpOK = false;
+
+    private Boolean connexionOK = false;
 
     public void setIdentifiantOK(Boolean identifiantOK) {
         this.identifiantOK = identifiantOK;
@@ -42,6 +44,18 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
 
     public void setFenParentConnexion(javax.swing.JDialog i) {
         this.panneauPereConnexion = i;
+    }
+
+    public Boolean getConnexionOK() {
+        return connexionOK;
+    }
+
+    public void setConnexionOK(Boolean connexionOK) {
+        this.connexionOK = connexionOK;
+    }
+
+    public JLabel getjLabelEtatConnexion() {
+        return jLabelEtatConnexion;
     }
 
     /**
@@ -153,22 +167,26 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
 
     private void jButtonConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConnexionActionPerformed
         if (identifiantOK && mdpOK) {
-            ResultSet lesResultats = DaoSIO.getInstance().requeteSelection("SELECT * FROM utilisateurs WHERE identifiant='" + this.panneauIdentifiant.getChamp2().getText() + "' AND mot_de_passe='" + String.valueOf(this.panneauMdp.getChampSecret1().getPassword()) + "'");
+            String mdp_sha256 = Cryptage.sha256(Cryptage.sha256(String.valueOf(this.panneauMdp.getChampSecret1().getPassword())));
+            ResultSet lesResultats = DaoSIO.getInstance().requeteSelection("SELECT * FROM utilisateurs WHERE identifiant='" + this.panneauIdentifiant.getChamp2().getText() + "' AND mot_de_passe='" + mdp_sha256 + "'");
             try {
                 if (lesResultats.next()) {
                     jLabelEtatConnexion.setForeground(Color.blue);
                     jLabelEtatConnexion.setText("Connexion réussie");
                     Utilisateur.setIdentifiant(this.panneauIdentifiant.getChamp2().getText());
-                    Utilisateur.getInstance().chargerInformationsUtilisateur();
+                    Utilisateur.getInstance().getAll();
+                    this.setConnexionOK(true);
                 } else {
                     jLabelEtatConnexion.setForeground(Color.red);
                     jLabelEtatConnexion.setText("Identifiant et/ou mot de passe incorrect(s)");
+                    this.setConnexionOK(false);
                 }
             } catch (Exception e) {
             }
         } else {
             jLabelEtatConnexion.setForeground(Color.red);
             jLabelEtatConnexion.setText("Champ(s) manquant(s)");
+            this.setConnexionOK(false);
         }
     }//GEN-LAST:event_jButtonConnexionActionPerformed
 

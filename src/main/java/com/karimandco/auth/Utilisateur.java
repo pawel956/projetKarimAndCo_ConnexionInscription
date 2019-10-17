@@ -33,6 +33,10 @@ public class Utilisateur {
     private String dateNaissance;
     private Blob photo;
 
+    private Utilisateur() {
+        chargerInformationsUtilisateur();
+    }
+
     public static String getIdentifiant() {
         return identifiant;
     }
@@ -42,7 +46,7 @@ public class Utilisateur {
     }
 
     /**
-     * Cette méthode renvoie la propriété estConnecte
+     * Cette méthode renvoie la propriété estConnecte.
      *
      * @return Boolean true or false
      */
@@ -51,7 +55,7 @@ public class Utilisateur {
     }
 
     /**
-     * Cette méthode permet de définir la propriété estConnecte
+     * Cette méthode permet de définir la propriété estConnecte.
      *
      * @param estConnecte Boolean true or false
      */
@@ -124,7 +128,7 @@ public class Utilisateur {
     }
 
     /**
-     * Permet d'obtenir l'objet instancié
+     * Permet d'obtenir l'objet instancié.
      *
      * @return un Objet Utilisateur
      */
@@ -153,7 +157,8 @@ public class Utilisateur {
                     this.prenom = lesResultats.getString("prenom");
                     this.numeroTelephone = lesResultats.getString("num_telephone");
                     this.courriel = lesResultats.getString("courriel");
-                    this.dateNaissance = lesResultats.getString("date_de_naissance");
+                    String[] date_split = lesResultats.getString("date_de_naissance").split("-");
+                    this.dateNaissance = date_split[2] + "/" + date_split[1] + "/" + date_split[0];
                     this.photo = lesResultats.getBlob("photo");
 
                     this.estConnecte = true;
@@ -162,5 +167,46 @@ public class Utilisateur {
                 Logger.getLogger(Utilisateur.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    /**
+     * Cette méthode permet de mettre à jour les informations de l'utilisateur
+     * sur la bdd et renvoie un booléen si la maj a été réussie.
+     *
+     * @return Boolean true or false
+     */
+    public Boolean updateInformationsUtilisateurBDD() {
+        Boolean resultat = false;
+        if (Utilisateur.identifiant != null) {
+            String[] date_split = this.getDateNaissance().split("/");
+            String data_split_ok = date_split[2] + "-" + date_split[1] + "-" + date_split[0];
+
+            Integer compteur = DaoSIO.getInstance().requeteAction("UPDATE utilisateurs SET nom='" + this.getNom() + "', prenom='" + this.getPrenom() + "', num_telephone='" + this.getNumeroTelephone() + "', courriel='" + this.getCourriel() + "', date_de_naissance='" + data_split_ok + "', photo='" + this.getPhoto() + "' WHERE identifiant='" + Utilisateur.getIdentifiant() + "'");
+
+            if (compteur > 0) {
+                resultat = true;
+            }
+        }
+        return resultat;
+    }
+
+    /**
+     * Cette méthode permet d'afficher toutes les propriétés contenant les
+     * informations de l'utilisateur (utile pour débug).
+     */
+    public void getAll() {
+        System.out.println();
+        System.out.println("============ Informations de l'utilisateur ============");
+        System.out.println("Id : " + this.getId());
+        System.out.println("Statut : " + this.getStatut());
+        System.out.println("Identifiant : " + Utilisateur.getIdentifiant());
+        System.out.println("Nom : " + this.getNom());
+        System.out.println("Prénom : " + this.getPrenom());
+        System.out.println("Numéro de téléphone : " + this.getNumeroTelephone());
+        System.out.println("Courriel : " + this.getCourriel());
+        System.out.println("Date de naissance : " + this.getDateNaissance());
+        System.out.println("Photo : " + this.getPhoto());
+        System.out.println("=======================================================");
+        System.out.println();
     }
 }
