@@ -66,17 +66,24 @@ DaoSIO.getInstance().requeteAction("Code SQL")
 #### Informations utiles pour accéder aux informations de l'utilisateur avec la classe Utilisateur
 On peut avoir accès à plusieurs informations sur l'utilisateur comme l'identifiant, l'id, le statut, le nom, le prénom, le numéro de téléphone, le courriel, la date de naissance, la photo
 
+Par exemple, pour afficher toutes les informations de l'utilisateur, on doit saisir : 
+```java
+// d'abord on doit définir la propriété identifiant
+Utilisateur.setIdentifiant("Admin");
+// ensuite on utilise la méthode getAll qui permet d'afficher toutes les informations de l'utilisateur (utile pour débug)
+Utilisateur.getInstance().getAll();
+```
+
 Par exemple, pour avoir accès au prénom de l'utilisateur, on doit saisir : 
 ```java
 // d'abord on doit définir la propriété identifiant
 Utilisateur.setIdentifiant("Admin");
-// ensuite on récupère les informations de l'utilisateur avec une requête SQL
-Utilisateur.getInstance().chargerInformationsUtilisateur();
-// et enfin on peut accéder par exemple au prénom de l'utilisateur
+// ensuite on utilise la méthode getPrenom pour accéder au prénom de l'utilisateur
 Utilisateur.getInstance().getPrenom();
 ```
 
-Pour savoir si l'utilisateur est connecté ou pas, on doit saisir :
+Pour savoir si l'utilisateur est connecté, on doit saisir :
 ```java
+// retourne un booléen true ou false
 Utilisateur.getInstance().getEstConnecte();
 ```
