@@ -178,6 +178,7 @@ public class PanneauFormConnexion extends javax.swing.JPanel {
                     jLabelEtatConnexion.setForeground(Color.blue);
                     jLabelEtatConnexion.setText("Connexion réussie");
                     Utilisateur.setIdentifiant(this.panneauIdentifiant.getChamp2().getText());
+                    Utilisateur.getInstance().chargerInformationsUtilisateur();
                     Utilisateur.getInstance().getAll();
                     this.setConnexionOK(true);
                 } else {
