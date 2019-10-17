@@ -82,21 +82,12 @@ public class DaoSIO {
      */
     public Boolean connexionActive() {
         Boolean connexionActive = true;
-
         try {
-            if (this.connexion != null) {
-                ResultSet resultat = this.connexion.createStatement().executeQuery("SELECT 1");
-                if (!resultat.next()) {
-                    connexionActive = false;
-                }
-            }
-
-        } catch (SQLException ex) {
-            if (ex.toString().contains("com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure")) {
+            if (this.connexion != null && !this.connexion.isValid(0)) {
                 connexionActive = false;
-            } else {
-                Logger.getLogger(DaoSIO.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoSIO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return connexionActive;
     }
