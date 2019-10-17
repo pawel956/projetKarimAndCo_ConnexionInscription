@@ -101,6 +101,22 @@ public class PanneauFormInscription extends javax.swing.JPanel {
         this.inscriptionOK = inscriptionOK;
     }
 
+    public PanneauChamp getPanneauCourriel() {
+        return panneauCourriel;
+    }
+
+    public PanneauChamp getPanneauDateNaissance() {
+        return panneauDateNaissance;
+    }
+
+    public PanneauChamp getPanneauNom() {
+        return panneauNom;
+    }
+
+    public PanneauChamp getPanneauPrenom() {
+        return panneauPrenom;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
